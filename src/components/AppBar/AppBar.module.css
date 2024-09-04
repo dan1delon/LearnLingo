@@ -1,0 +1,42 @@
+.wrapperMain {
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(15, 12, 41, 0.9),
+    rgba(87, 87, 87, 0.9),
+    rgba(36, 36, 62, 0.9)
+  );
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  display: flex;
+  justify-content: center;
+  border: none;
+}
+
+.nav {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.link {
+  border: 1px solid white;
+  color: white;
+  border-radius: 200px;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+
+.link:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background: rgb(216, 67, 67);
+  border: 1px solid rgb(216, 67, 67);
+}
+
+.active {
+  background: rgb(228, 72, 72);
+  border: 1px solid rgb(228, 72, 72);
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
