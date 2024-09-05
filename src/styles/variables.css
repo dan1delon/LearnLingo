@@ -1,0 +1,6 @@
+:root {
+  --primary-black-color: #2f2f2f;
+  --primary-white-color: #ffffff;
+  --transition-duration: 0.3s;
+  --transition-timing-function: ease-in-out;
+}

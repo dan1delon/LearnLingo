@@ -1,8 +1,8 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0%;
   font-weight: 400;
-  color: rgb(16, 24, 40);
+  color: rgb(18, 20, 23);
 }
 
 #root {
