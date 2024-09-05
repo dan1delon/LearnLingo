@@ -1,14 +1,14 @@
 .wrapperMain {
+  display: flex;
+  height: 48px;
+  width: 1184px;
+  margin: 20px 0;
 }
 
-.nav {
-}
-
-.link {
-}
-
-.link:hover {
-}
-
-.active {
+.wrapperNav {
+  width: 661px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: auto;
 }
