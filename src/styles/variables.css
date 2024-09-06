@@ -1,6 +1,10 @@
 :root {
-  --primary-black-color: #2f2f2f;
-  --primary-white-color: #ffffff;
-  --transition-duration: 0.3s;
+  --light-blue-color: rgb(191, 214, 234);
+  --dark-blue-color: rgb(159, 183, 206);
+  --primary-white-color: rgb(255, 255, 255);
+  --primary-black-color: rgb(18, 20, 23);
+  --primary-background-color: rgb(248, 248, 248);
+  --primary-font-family: 'Roboto', sans-serif;
+  --transition-duration: 0.2s;
   --transition-timing-function: ease-in-out;
 }
