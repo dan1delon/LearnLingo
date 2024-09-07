@@ -1,0 +1,68 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  gap: 149px;
+}
+
+.nameContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.paragraph {
+  color: var(--primary-grey-color);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: left;
+}
+
+.name {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: left;
+}
+
+.statisticsList {
+  height: 24px;
+  display: flex;
+  gap: 32px;
+  margin-right: 90px;
+}
+
+.statisticsItem {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
+.statisticsText {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: left;
+}
+
+.addToFavoritesBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: transparent;
+}
+
+.iconHeart {
+  width: 26px;
+  height: 26px;
+  pointer-events: none;
+}
