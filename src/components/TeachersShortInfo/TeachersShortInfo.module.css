@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.paragraph {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: left;
+}
+
+.underlinedWords {
+  text-decoration: underline;
+}
+
+.highlight {
+  color: var(--primary-grey-color);
+}

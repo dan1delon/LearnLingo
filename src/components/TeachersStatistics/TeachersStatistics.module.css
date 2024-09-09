@@ -1,7 +1,7 @@
 .wrapper {
   position: relative;
   display: flex;
-  gap: 149px;
+  justify-content: space-between;
 }
 
 .nameContainer {
@@ -35,10 +35,24 @@
 }
 
 .statisticsItem {
+  position: relative;
   display: flex;
   gap: 8px;
   align-items: center;
   justify-content: center;
+}
+
+.statisticsItem::after {
+  position: absolute;
+  right: -16px;
+  height: 16px;
+  width: 1px;
+  content: '';
+  background-color: rgba(18, 20, 23, 0.2);
+}
+
+.statisticsItem:last-child::after {
+  display: none;
 }
 
 .icon {
@@ -52,6 +66,10 @@
   line-height: 24px;
   letter-spacing: 0%;
   text-align: left;
+}
+
+.price {
+  color: var(--primary-green-color);
 }
 
 .addToFavoritesBtn {

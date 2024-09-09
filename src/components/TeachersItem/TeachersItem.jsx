@@ -1,15 +1,10 @@
 import Icon from '../../shared/Icon/Icon';
-import TeachersDetailedInfo from '../TeachersDetailedInfo/TeachersDetailedInfo';
 import TeachersLevels from '../TeachersLevels/TeachersLevels';
 import TeachersShortInfo from '../TeachersShortInfo/TeachersShortInfo';
 import TeachersStatistics from '../TeachersStatistics/TeachersStatistics';
 import css from './TeachersItem.module.css';
 
 const TeachersItem = ({ data }) => {
-  const handleReadMoreClick = () => {
-    console.log(data);
-  };
-
   const handleBookingClick = () => {
     console.log(data);
   };
@@ -23,14 +18,6 @@ const TeachersItem = ({ data }) => {
       <div className={css.infoContainer}>
         <TeachersStatistics data={data} />
         <TeachersShortInfo data={data} />
-        <button
-          type="button"
-          className={css.readMoreBtn}
-          onClick={handleReadMoreClick}
-        >
-          Read more
-        </button>
-        <TeachersDetailedInfo data={data} />
         <TeachersLevels data={data} />
         <button
           type="button"

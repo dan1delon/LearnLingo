@@ -34,12 +34,10 @@
 }
 
 .infoContainer {
+  width: 968px;
   display: flex;
   flex-direction: column;
   gap: 32px;
-}
-
-.readMoreBtn {
 }
 
 .bookTrialBtn {

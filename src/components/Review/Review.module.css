@@ -1,0 +1,54 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.infoWrapper {
+  display: flex;
+  gap: 12px;
+}
+
+.namePicture {
+  width: 44px;
+  height: 44px;
+  border-radius: 60px;
+  background: var(--primary-background-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dark-blue-color);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0%;
+}
+
+.name {
+  color: var(--primary-grey-color);
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: left;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
+.ratingWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.rating {
+}
+
+.text {
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+}
