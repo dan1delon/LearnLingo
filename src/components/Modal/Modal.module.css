@@ -9,32 +9,18 @@
 .modalContainer {
   position: relative;
   max-height: 80vh;
-  background-color: #fff;
+  background-color: var(--primary-white-color);
   box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
-  padding: 40px;
+  border-radius: 30px;
+  padding: 64px;
   margin: 0 auto;
   overflow: auto;
 }
 
-.modalContainer::-webkit-scrollbar {
-  width: 8px;
-  background-color: transparent;
-}
-
-.modalContainer::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.modalContainer::-webkit-scrollbar-thumb {
-  background: rgb(217, 217, 217);
-  border-radius: 7px;
-}
-
 .modalButtonClose {
   position: absolute;
-  top: 40px;
-  right: 40px;
+  top: 20px;
+  right: 20px;
   width: 32px;
   height: 32px;
   background: none;

@@ -16,23 +16,24 @@ body {
 }
 
 ::-webkit-scrollbar {
-  background-color: transparent;
   width: 8px;
+  background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--primary-grey-color);
   border-radius: 12px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: var(--dark-blue-color);
+  transition: background-color 0.3s ease;
 }
 
 ::-webkit-scrollbar-track {
   background-color: transparent;
 }
 
-::-webkit-scrollbar-track:hover {
-  background-color: transparent;
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--hover-grey-color);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: var(--active-grey-color);
 }

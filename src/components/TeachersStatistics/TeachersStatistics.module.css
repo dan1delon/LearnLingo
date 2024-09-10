@@ -79,6 +79,11 @@
   background: transparent;
 }
 
+.addToFavoritesBtn:hover .iconHeart {
+  fill: var(--dark-blue-color-hover);
+  stroke: var(--dark-blue-color-hover);
+}
+
 .iconHeart {
   width: 26px;
   height: 26px;

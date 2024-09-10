@@ -1,13 +1,18 @@
+import { useModal } from '../../context';
 import Icon from '../../shared/Icon/Icon';
+import ModalLogin from '../ModalLogin/ModalLogin';
+import ModalRegistration from '../ModalRegistration/ModalRegistration';
 import css from './AuthNav.module.css';
 
 const AuthNav = () => {
+  const { openModal } = useModal();
+
   const handleLoginClick = () => {
-    console.log('Login');
+    openModal(<ModalLogin />);
   };
 
   const handleRegisterClick = () => {
-    console.log('Register');
+    openModal(<ModalRegistration />);
   };
 
   return (

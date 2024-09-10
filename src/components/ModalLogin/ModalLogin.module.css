@@ -1,0 +1,25 @@
+.wrapper {
+  max-width: 438px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.infoWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 48px;
+  letter-spacing: -2%;
+  text-align: left;
+}
+
+.text {
+  line-height: 22px;
+  text-align: left;
+}
