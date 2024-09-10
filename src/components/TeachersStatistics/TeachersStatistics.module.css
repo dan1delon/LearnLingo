@@ -83,4 +83,12 @@
   width: 26px;
   height: 26px;
   pointer-events: none;
+  stroke: black;
+  fill: none;
+  transition: all var(--transition-duration) var(--transition-timing-function);
+}
+
+.favorites {
+  fill: var(--dark-blue-color);
+  stroke: var(--dark-blue-color);
 }

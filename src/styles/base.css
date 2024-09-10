@@ -8,3 +8,31 @@
   align-items: center;
   justify-content: center;
 }
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary-grey-color);
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--dark-blue-color);
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track:hover {
+  background-color: transparent;
+}

@@ -15,7 +15,7 @@
   position: relative;
   border: 50%;
   box-sizing: border-box;
-  border: 3px solid rgb(251, 233, 186);
+  border: 3px solid var(--light-blue-color);
   border-radius: 100px;
 }
 
@@ -41,4 +41,17 @@
 }
 
 .bookTrialBtn {
+  width: 242px;
+  height: 60px;
+  padding: 16px 48px;
+  border-radius: 12px;
+  color: var(--primary-white-color);
+  font-size: 18px;
+  font-weight: 700;
+  background-color: var(--dark-blue-color);
+  transition: all var(--transition-duration) var(--transition-timing-function);
+}
+
+.bookTrialBtn:hover {
+  background-color: var(--dark-blue-color-hover);
 }

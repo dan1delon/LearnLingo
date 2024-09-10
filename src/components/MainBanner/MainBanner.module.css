@@ -57,12 +57,12 @@
   text-align: left;
   padding: 16px 88px;
   border-radius: 12px;
-  background: var(--light-blue-color);
+  background: var(--dark-blue-color);
   transition: all var(--transition-duration) var(--transition-timing-function);
 }
 
 .link:hover {
-  background: var(--dark-blue-color);
+  background: var(--dark-blue-color-hover);
 }
 
 .img {

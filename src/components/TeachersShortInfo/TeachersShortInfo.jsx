@@ -1,7 +1,7 @@
 import TeachersDetailedInfo from '../TeachersDetailedInfo/TeachersDetailedInfo';
 import css from './TeachersShortInfo.module.css';
 
-const TeachersShortInfo = ({ data }) => {
+const TeachersShortInfo = ({ data, handleShowBookingBtn }) => {
   return (
     <div className={css.container}>
       <div className={css.wrapper}>
@@ -19,7 +19,10 @@ const TeachersShortInfo = ({ data }) => {
           {data.conditions.join(' ')}
         </p>
       </div>
-      <TeachersDetailedInfo data={data} />
+      <TeachersDetailedInfo
+        data={data}
+        handleShowBookingBtn={handleShowBookingBtn}
+      />
     </div>
   );
 };

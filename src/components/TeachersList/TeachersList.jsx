@@ -45,20 +45,25 @@ const data = [
 
 const TeachersList = () => {
   return (
-    <ul className={css.list}>
-      {data.length === 0 && (
-        <li className={css.listItemMessage}>
-          <p className={css.message}>
-            Sorry, there are no results matching your search :(
-          </p>
-        </li>
-      )}
-      {data.map(teacher => (
-        <li key={teacher.id} className={css.listItem}>
-          <TeachersItem data={teacher} />
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul className={css.list}>
+        {data.length === 0 && (
+          <li className={css.listItemMessage}>
+            <p className={css.message}>
+              Sorry, there are no results matching your search :(
+            </p>
+          </li>
+        )}
+        {data.map(teacher => (
+          <li key={teacher.id} className={css.listItem}>
+            <TeachersItem data={teacher} />
+          </li>
+        ))}
+      </ul>
+      <button type="button" className={css.loadMoreBtn}>
+        Load more
+      </button>
+    </>
   );
 };
 

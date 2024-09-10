@@ -1,7 +1,15 @@
+import clsx from 'clsx';
 import Icon from '../../shared/Icon/Icon';
 import css from './TeachersStatistics.module.css';
+import { useState } from 'react';
 
 const TeachersStatistics = ({ data }) => {
+  const [favorites, setFavorites] = useState(false);
+
+  const handleAddToFavoritesClick = () => {
+    return setFavorites(!favorites);
+  };
+
   return (
     <div className={css.wrapper}>
       <div className={css.nameContainer}>
@@ -29,8 +37,15 @@ const TeachersStatistics = ({ data }) => {
           </p>
         </li>
       </ul>
-      <button type="button" className={css.addToFavoritesBtn}>
-        <Icon iconId="icon-heart" className={css.iconHeart}></Icon>
+      <button
+        type="button"
+        className={css.addToFavoritesBtn}
+        onClick={handleAddToFavoritesClick}
+      >
+        <Icon
+          iconId="icon-heart"
+          className={clsx(css.iconHeart, { [css.favorites]: favorites })}
+        ></Icon>
       </button>
     </div>
   );

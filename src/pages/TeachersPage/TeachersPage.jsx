@@ -7,7 +7,6 @@ const TeachersPage = () => {
     <div className={css.container}>
       <Filters />
       <TeachersList />
-      <button type="button">Load more</button>
     </div>
   );
 };

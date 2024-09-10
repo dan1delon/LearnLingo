@@ -2,11 +2,12 @@ import { useState } from 'react';
 import css from './TeachersDetailedInfo.module.css';
 import Review from '../Review/Review';
 
-const TeachersDetailedInfo = ({ data }) => {
+const TeachersDetailedInfo = ({ data, handleShowBookingBtn }) => {
   const [isDetailedInfoVisible, setDetailedInfoVisible] = useState(false);
 
   const handleReadMoreClick = () => {
     setDetailedInfoVisible(true);
+    handleShowBookingBtn();
   };
 
   return (
