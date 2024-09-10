@@ -1,15 +1,16 @@
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import css from './LoginForm.module.css';
 import clsx from 'clsx';
 import { useState } from 'react';
 import Icon from '../../shared/Icon/Icon';
+import css from './RegistrationForm.module.css';
 
-const LoginForm = () => {
+const RegistrationForm = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const FormSchema = Yup.object({
+    name: Yup.string().required('Please enter your name'),
     email: Yup.string().email().required('Please enter a valid email'),
     password: Yup.string().required('Please enter your password'),
   });
@@ -23,6 +24,7 @@ const LoginForm = () => {
     resolver: yupResolver(FormSchema),
     mode: 'onSubmit',
     defaultValues: {
+      name: '',
       email: '',
       password: '',
     },
@@ -39,6 +41,15 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
+      <label className={css.labelWrapper}>
+        <input
+          type="text"
+          {...register('name')}
+          placeholder="Name"
+          className={clsx(css.input, { [css.inputError]: errors.name })}
+        />
+        <p className={css.errorMessage}>{errors.name?.message}</p>
+      </label>
       <label className={css.labelWrapper}>
         <input
           type="email"
@@ -69,10 +80,10 @@ const LoginForm = () => {
         <p className={css.errorMessage}>{errors.password?.message}</p>
       </label>
       <button type="submit" className={css.btn}>
-        Log In
+        Sign Up
       </button>
     </form>
   );
 };
 
-export default LoginForm;
+export default RegistrationForm;
