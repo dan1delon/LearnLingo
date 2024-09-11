@@ -3,13 +3,18 @@ import { useForm } from 'react-hook-form';
 import clsx from 'clsx';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import { useState } from 'react';
+import { useModal } from '../../context';
 
 const BookingForm = () => {
+  const [selectedReason, setSelectedReason] = useState('');
+  const { closeModal } = useModal();
+
   const FormSchema = Yup.object({
     reason: Yup.string().required('Please select a reason'),
     name: Yup.string().required('Please enter your name'),
     email: Yup.string().email().required('Please enter a valid email'),
-    phone: Yup.string().required('Please enter your phone number'),
+    phone: Yup.number().required('Please enter your phone number'),
   });
 
   const {
@@ -28,9 +33,15 @@ const BookingForm = () => {
     },
   });
 
-  const onSubmit = data => {
+  const onSubmit = (e, data) => {
     console.log(data);
+    setSelectedReason('');
     reset();
+    closeModal(e);
+  };
+
+  const handleRadioChange = event => {
+    setSelectedReason(event.target.value);
   };
 
   return (
@@ -47,18 +58,26 @@ const BookingForm = () => {
             'Exams and coursework',
             'Culture, travel or hobby',
           ].map(reason => (
-            <label key={reason} className={css.labelRadio}>
+            <label
+              key={reason}
+              className={clsx(css.labelRadio, css.labelRadioAlcove, {
+                [css.active]: selectedReason === reason,
+              })}
+            >
               <input
                 type="radio"
                 value={reason}
                 {...register('reason')}
                 className={css.radioHidden}
+                onChange={handleRadioChange}
               />
               {reason}
             </label>
           ))}
-          <p className={css.errorMessage}>{errors.reason?.message}</p>
         </div>
+        {!selectedReason && (
+          <p className={css.errorMessage}>{errors.reason?.message}</p>
+        )}
 
         <div className={css.formWrapper}>
           <label className={css.labelWrapper}>
@@ -81,7 +100,7 @@ const BookingForm = () => {
           </label>
           <label className={css.labelWrapper}>
             <input
-              type="number"
+              type="tel"
               {...register('phone')}
               placeholder="Phone number"
               className={clsx(css.input, {

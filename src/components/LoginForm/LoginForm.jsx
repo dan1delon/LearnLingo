@@ -28,7 +28,7 @@ const LoginForm = () => {
     },
   });
 
-  const onSubmit = data => {
+  const onSubmit = (e, data) => {
     console.log(data);
     reset();
   };

@@ -44,49 +44,84 @@
   content: '';
   display: block;
   box-sizing: border-box;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   border: 2px solid rgba(18, 20, 23, 0.1);
   border-radius: 50%;
   margin-right: 8px;
   transition: all var(--transition-duration) var(--transition-timing-function);
 }
 
-.labelRadio::after {
+.labelRadio.active::before {
+  border-color: var(--dark-blue-color);
+}
+
+.labelRadio.active::after {
   content: '';
+  display: block;
   position: absolute;
-  z-index: 100;
+  top: 5px;
+  left: 5px;
   width: 12px;
   height: 12px;
-  background-color: transparent;
   border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
+  background-color: var(--dark-blue-color);
   transition: all var(--transition-duration) var(--transition-timing-function);
 }
 
-.radioHidden:checked + .labelRadio::after {
-  background-color: red;
-  opacity: 1;
-}
-
-.radioHidden:checked + .labelRadio::before {
-  border-color: red;
-}
-
 .formWrapper {
-}
-
-.labelWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
 .input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(18, 20, 23, 0.1);
+  border-radius: 12px;
+  color: rgb(18, 20, 23);
+  font-family: Roboto;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: left;
+  padding: 16px 18px;
+}
+
+.input:focus,
+.input:active {
+  outline: none;
+  border: 1px solid var(--light-blue-color);
+}
+
+input::placeholder {
+  color: rgb(18, 20, 23);
+  font-size: 16px;
+  line-height: 22px;
+  text-align: left;
+}
+
+.btn {
+  width: 100%;
+  padding: 16px 18px;
+  color: rgb(18, 20, 23);
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0%;
+  text-align: center;
+  border-radius: 12px;
+  background-color: var(--dark-blue-color);
+  transition: all var(--transition-duration) var(--transition-timing-function);
+}
+
+.btn:hover {
+  background-color: var(--dark-blue-color-hover);
 }
 
 .errorMessage {
+  margin-top: 4px;
   color: #ef5050;
   font-size: 13px;
 }
