@@ -1,0 +1,98 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.reasonWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  text-align: left;
+}
+
+.radioWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.radioHidden {
+  opacity: 0;
+  position: absolute;
+  cursor: pointer;
+  width: 0;
+  height: 0;
+}
+
+.labelRadio {
+  line-height: 22px;
+  letter-spacing: 0%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.labelRadio::before {
+  content: '';
+  display: block;
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(18, 20, 23, 0.1);
+  border-radius: 50%;
+  margin-right: 8px;
+  transition: all var(--transition-duration) var(--transition-timing-function);
+}
+
+.labelRadio::after {
+  content: '';
+  position: absolute;
+  z-index: 100;
+  width: 12px;
+  height: 12px;
+  background-color: transparent;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all var(--transition-duration) var(--transition-timing-function);
+}
+
+.radioHidden:checked + .labelRadio::after {
+  background-color: red;
+  opacity: 1;
+}
+
+.radioHidden:checked + .labelRadio::before {
+  border-color: red;
+}
+
+.formWrapper {
+}
+
+.labelWrapper {
+}
+
+.input {
+}
+
+.errorMessage {
+  color: #ef5050;
+  font-size: 13px;
+}
+
+.inputError {
+  border: 1px solid #ef5050;
+  color: #ef5050;
+  transition: all 0.3s;
+}

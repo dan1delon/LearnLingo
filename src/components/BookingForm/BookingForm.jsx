@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import css from './BookingForm.module.css';
 import { useForm } from 'react-hook-form';
 import clsx from 'clsx';
@@ -17,7 +16,6 @@ const BookingForm = () => {
     register,
     handleSubmit,
     reset,
-    setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(FormSchema),
@@ -34,10 +32,6 @@ const BookingForm = () => {
     console.log(data);
     reset();
   };
-  const [selectedReason, setSelectedReason] = useState('Career and business');
-  const handleRadioChange = e => {
-    setSelectedReason(e.target.value);
-  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
@@ -46,77 +40,26 @@ const BookingForm = () => {
           What is your main reason for learning English?
         </h4>
         <div className={css.radioWrapper}>
-          <label
-            className={clsx(css.labelRadio, {
-              [css.active]: selectedReason === 'Career and business',
-            })}
-          >
-            <input
-              type="radio"
-              value="Career and business"
-              {...register('reason')}
-              className={clsx(css.radioHidden)}
-              onChange={handleRadioChange}
-            />
-            Career and business
-          </label>
-          <label
-            className={clsx(css.labelRadio, {
-              [css.active]: selectedReason === 'Lesson for kids',
-            })}
-          >
-            <input
-              type="radio"
-              value="Lesson for kids"
-              {...register('reason')}
-              className={clsx(css.radioHidden)}
-              onChange={handleRadioChange}
-            />
-            Lesson for kids
-          </label>
-          <label
-            className={clsx(css.labelRadio, {
-              [css.active]: selectedReason === 'Living abroad',
-            })}
-          >
-            <input
-              type="radio"
-              value="Living abroad"
-              {...register('reason')}
-              className={clsx(css.radioHidden)}
-              onChange={handleRadioChange}
-            />
-            Living abroad
-          </label>
-          <label
-            className={clsx(css.labelRadio, {
-              [css.active]: selectedReason === 'Exams and coursework',
-            })}
-          >
-            <input
-              type="radio"
-              value="Exams and coursework"
-              {...register('reason')}
-              className={clsx(css.radioHidden)}
-              onChange={handleRadioChange}
-            />
-            Exams and coursework
-          </label>
-          <label
-            className={clsx(css.labelRadio, {
-              [css.active]: selectedReason === 'Culture, travel or hobby',
-            })}
-          >
-            <input
-              type="radio"
-              value="Culture, travel or hobby"
-              {...register('reason')}
-              className={clsx(css.radioHidden)}
-              onChange={handleRadioChange}
-            />
-            Culture, travel or hobby
-          </label>
+          {[
+            'Career and business',
+            'Lesson for kids',
+            'Living abroad',
+            'Exams and coursework',
+            'Culture, travel or hobby',
+          ].map(reason => (
+            <label key={reason} className={css.labelRadio}>
+              <input
+                type="radio"
+                value={reason}
+                {...register('reason')}
+                className={css.radioHidden}
+              />
+              {reason}
+            </label>
+          ))}
+          <p className={css.errorMessage}>{errors.reason?.message}</p>
         </div>
+
         <div className={css.formWrapper}>
           <label className={css.labelWrapper}>
             <input
@@ -125,6 +68,7 @@ const BookingForm = () => {
               placeholder="Full Name"
               className={clsx(css.input, { [css.inputError]: errors.name })}
             />
+            <p className={css.errorMessage}>{errors.name?.message}</p>
           </label>
           <label className={css.labelWrapper}>
             <input
@@ -133,6 +77,7 @@ const BookingForm = () => {
               placeholder="Email"
               className={clsx(css.input, { [css.inputError]: errors.email })}
             />
+            <p className={css.errorMessage}>{errors.email?.message}</p>
           </label>
           <label className={css.labelWrapper}>
             <input
@@ -143,6 +88,7 @@ const BookingForm = () => {
                 [css.inputError]: errors.phone,
               })}
             />
+            <p className={css.errorMessage}>{errors.phone?.message}</p>
           </label>
         </div>
       </div>
