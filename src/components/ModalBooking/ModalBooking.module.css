@@ -1,0 +1,57 @@
+.mainWrapper {
+  max-width: 472px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.infoWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 48px;
+  letter-spacing: -2%;
+  text-align: left;
+}
+
+.paragraph {
+  color: rgba(18, 20, 23, 0.8);
+  line-height: 22px;
+  text-align: left;
+}
+
+.nameWrapper {
+  display: flex;
+  gap: 14px;
+}
+
+.teacherAvatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 100px;
+}
+
+.teacherInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.teacherParagraph {
+  color: var(--primary-grey-color);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: left;
+}
+
+.name {
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+}
