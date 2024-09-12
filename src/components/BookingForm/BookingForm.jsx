@@ -33,7 +33,7 @@ const BookingForm = () => {
     },
   });
 
-  const onSubmit = (e, data) => {
+  const onSubmit = (data, e) => {
     console.log(data);
     setSelectedReason('');
     reset();
@@ -46,7 +46,7 @@ const BookingForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
-      <div className={css.reasonWrapper}>
+      <div className={css.wrapper}>
         <h4 className={css.title}>
           What is your main reason for learning English?
         </h4>
@@ -74,10 +74,10 @@ const BookingForm = () => {
               {reason}
             </label>
           ))}
+          {!selectedReason && (
+            <p className={css.errorMessage}>{errors.reason?.message}</p>
+          )}
         </div>
-        {!selectedReason && (
-          <p className={css.errorMessage}>{errors.reason?.message}</p>
-        )}
 
         <div className={css.formWrapper}>
           <label className={css.labelWrapper}>

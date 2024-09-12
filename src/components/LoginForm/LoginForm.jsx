@@ -5,9 +5,11 @@ import css from './LoginForm.module.css';
 import clsx from 'clsx';
 import { useState } from 'react';
 import Icon from '../../shared/Icon/Icon';
+import useAuthActions from '../../firebaseHelpers/index.js';
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const { login } = useAuthActions();
 
   const FormSchema = Yup.object({
     email: Yup.string().email().required('Please enter a valid email'),
@@ -28,8 +30,9 @@ const LoginForm = () => {
     },
   });
 
-  const onSubmit = (e, data) => {
-    console.log(data);
+  const onSubmit = (data, e) => {
+    e.preventDefault();
+    login(data, e);
     reset();
   };
 
@@ -53,6 +56,7 @@ const LoginForm = () => {
           type={showPassword ? 'text' : 'password'}
           {...register('password')}
           placeholder="Password"
+          autoComplete="on"
           className={clsx(css.input, { [css.inputError]: errors.password })}
         />
         <button

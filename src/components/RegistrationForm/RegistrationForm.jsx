@@ -5,9 +5,11 @@ import clsx from 'clsx';
 import { useState } from 'react';
 import Icon from '../../shared/Icon/Icon';
 import css from './RegistrationForm.module.css';
+import useAuthActions from '../../firebaseHelpers/index.js';
 
 const RegistrationForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const { registration } = useAuthActions();
 
   const FormSchema = Yup.object({
     name: Yup.string().required('Please enter your name'),
@@ -30,8 +32,9 @@ const RegistrationForm = () => {
     },
   });
 
-  const onSubmit = data => {
-    console.log(data);
+  const onSubmit = (data, e) => {
+    e.preventDefault();
+    registration(data, e);
     reset();
   };
 
@@ -64,6 +67,7 @@ const RegistrationForm = () => {
           type={showPassword ? 'text' : 'password'}
           {...register('password')}
           placeholder="Password"
+          autoComplete="on"
           className={clsx(css.input, { [css.inputError]: errors.password })}
         />
         <button
