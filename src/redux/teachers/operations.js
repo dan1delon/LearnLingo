@@ -10,13 +10,15 @@ export const fetchTeachers = createAsyncThunk(
     try {
       const response = await axios.get('/teachers.json');
       const data = response.data;
-      console.log(data);
 
       if (!data) {
         return [];
       }
+      const teachersArray = data
+        ? Object.keys(data).map(key => ({ id: key, ...data[key] }))
+        : [];
 
-      return data;
+      return teachersArray;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
