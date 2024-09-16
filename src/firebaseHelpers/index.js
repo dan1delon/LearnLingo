@@ -1,16 +1,20 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
   updateProfile,
 } from 'firebase/auth';
 import { ref, set } from 'firebase/database';
 import { auth, db } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import { useModal } from '../context';
+import { useDispatch } from 'react-redux';
+import { logout, setUser } from '../redux/auth/slice';
 
 const useAuthActions = () => {
   const navigate = useNavigate();
   const { closeModal } = useModal();
+  const dispatch = useDispatch();
 
   const registration = async (data, e) => {
     try {
@@ -29,6 +33,14 @@ const useAuthActions = () => {
       //   name: data.name,
       //   email: data.email,
       // });
+
+      dispatch(
+        setUser({
+          uid: user.uid,
+          email: user.email,
+          displayName: user.name,
+        })
+      );
     } catch (error) {
       console.error('Error registering user:', error);
     } finally {
@@ -40,6 +52,15 @@ const useAuthActions = () => {
   const login = async (data, e) => {
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
+      const user = userCredential.user;
+
+      dispatch(
+        setUser({
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+        })
+      );
     } catch (error) {
       console.error('Error logging in:', error);
     } finally {
@@ -48,7 +69,16 @@ const useAuthActions = () => {
     }
   };
 
-  return { registration, login };
+  const logOutUser = async () => {
+    try {
+      await signOut(auth);
+      dispatch(logout());
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
+
+  return { registration, login, logOutUser };
 };
 
 export default useAuthActions;
