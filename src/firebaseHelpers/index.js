@@ -51,7 +51,11 @@ const useAuthActions = () => {
 
   const login = async (data, e) => {
     try {
-      await signInWithEmailAndPassword(auth, data.email, data.password);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
       const user = userCredential.user;
 
       dispatch(
@@ -75,6 +79,8 @@ const useAuthActions = () => {
       dispatch(logout());
     } catch (error) {
       console.error('Error logging out:', error);
+    } finally {
+      navigate('/');
     }
   };
 

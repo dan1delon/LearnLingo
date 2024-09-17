@@ -1,0 +1,56 @@
+.wrapper {
+  max-width: 438px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 48px;
+  letter-spacing: -2%;
+  text-align: left;
+}
+
+.text {
+  line-height: 22px;
+  text-align: left;
+}
+
+.buttonWrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn {
+  width: 209px;
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0%;
+  text-align: center;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--dark-blue-color);
+  background: var(--dark-blue-color);
+  margin-top: 22px;
+  transition: all var(--transition-duration) var(--transition-timing-function);
+}
+
+.btn:hover {
+  background-color: var(--dark-blue-color-hover);
+}
+
+.btnNo {
+  background-color: var(--primary-white-color);
+  border: none;
+  transition: all var(--transition-duration) var(--transition-timing-function);
+}
+
+.btnNo:hover {
+  background-color: var(--primary-white-color);
+  border: 1px solid var(--primary-black-color);
+}

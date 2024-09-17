@@ -1,8 +1,12 @@
 import clsx from 'clsx';
 import { NavLink } from 'react-router-dom';
 import css from './UserMenu.module.css';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
 
 const UserMenu = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const handleActiveLink = ({ isActive }) => {
     return clsx(css.link, { [css.active]: isActive });
   };
@@ -15,9 +19,11 @@ const UserMenu = () => {
       <NavLink to="/teachers" className={handleActiveLink}>
         Teachers
       </NavLink>
-      <NavLink to="/favorites" className={handleActiveLink}>
-        Favorites
-      </NavLink>
+      {isLoggedIn && (
+        <NavLink to="/favorites" className={handleActiveLink}>
+          Favorites
+        </NavLink>
+      )}
     </nav>
   );
 };
