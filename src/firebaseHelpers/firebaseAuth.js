@@ -4,7 +4,7 @@ import {
   signOut,
   updateProfile,
 } from 'firebase/auth';
-import { ref, set } from 'firebase/database';
+import { ref, set, get } from 'firebase/database';
 import { auth, db } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import { useModal } from '../context';
@@ -58,7 +58,7 @@ const useAuthActions = () => {
       const user = userCredential.user;
 
       const userRef = ref(db, 'users/' + user.uid);
-      const snapshot = await userRef.once('value');
+      const snapshot = await get(userRef);
       const userData = snapshot.val();
 
       dispatch(

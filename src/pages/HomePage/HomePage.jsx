@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom';
 import css from './HomePage.module.css';
 import MainBanner from '../../components/MainBanner/MainBanner';
 import Statistics from '../../components/Statistics/Statistics';
