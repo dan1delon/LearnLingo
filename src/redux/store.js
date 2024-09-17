@@ -16,17 +16,20 @@ import { filtersReducer } from './filter/slice';
 import { authReducer } from './auth/slice';
 
 const persistConfig = {
-  key: 'root',
+  key: 'favorites',
   storage,
-  blacklist: ['teachers, filters'],
+  blacklist: ['teachers', 'filters'],
 };
 
-const persistedReducer = persistReducer(persistConfig, favoritesReducer);
+const persistedFavoritesReducer = persistReducer(
+  persistConfig,
+  favoritesReducer
+);
 
 export const store = configureStore({
   reducer: {
     teachers: teachersReducer,
-    favorites: persistedReducer,
+    favorites: persistedFavoritesReducer,
     filters: filtersReducer,
     auth: authReducer,
   },

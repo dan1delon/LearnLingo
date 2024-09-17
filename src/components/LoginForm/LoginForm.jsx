@@ -5,7 +5,7 @@ import css from './LoginForm.module.css';
 import clsx from 'clsx';
 import { useState } from 'react';
 import Icon from '../../shared/Icon/Icon';
-import useAuthActions from '../../firebaseHelpers/index.js';
+import useAuthActions from '../../firebaseHelpers/firebaseAuth.js';
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);

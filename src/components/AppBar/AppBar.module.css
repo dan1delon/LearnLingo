@@ -1,6 +1,8 @@
 .wrapperMain {
   width: 100%;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   height: 48px;
   width: 1184px;
   margin: 20px auto;
@@ -8,9 +10,7 @@
 }
 
 .wrapperNav {
-  width: 661px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   z-index: 1;
 }

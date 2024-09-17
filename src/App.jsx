@@ -8,9 +8,11 @@ import FavoritesPage from './pages/FavoritesPage/FavoritesPage';
 import Layout from './components/Layout/Layout';
 import TeachersPage from './pages/TeachersPage/TeachersPage';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import RestrictedRoute from './components/RestrictedRoute/RestrictedRoute';
+import useAuthListener from './firebaseHelpers/useAuthListener';
 
 function App() {
+  useAuthListener();
+
   return (
     <Layout>
       <Suspense fallback={<Loader />}>

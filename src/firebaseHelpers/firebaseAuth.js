@@ -16,7 +16,7 @@ const useAuthActions = () => {
   const { closeModal } = useModal();
   const dispatch = useDispatch();
 
-  const registration = async (data, e) => {
+  const registration = async data => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -25,26 +25,25 @@ const useAuthActions = () => {
       );
       const user = userCredential.user;
 
-      // await updateProfile(user, {
-      //   displayName: data.name,
-      // });
+      await updateProfile(user, {
+        displayName: data.name,
+      });
 
-      // await set(ref(db, 'users/' + user.uid), {
-      //   name: data.name,
-      //   email: data.email,
-      // });
+      await set(ref(db, 'users/' + user.uid), {
+        name: data.name,
+        email: data.email,
+      });
 
       dispatch(
         setUser({
           uid: user.uid,
           email: user.email,
-          displayName: user.name,
+          displayName: user.displayName || data.name,
         })
       );
     } catch (error) {
       console.error('Error registering user:', error);
     } finally {
-      closeModal(e);
       navigate('/teachers');
     }
   };
@@ -58,13 +57,18 @@ const useAuthActions = () => {
       );
       const user = userCredential.user;
 
+      const userRef = ref(db, 'users/' + user.uid);
+      const snapshot = await userRef.once('value');
+      const userData = snapshot.val();
+
       dispatch(
         setUser({
           uid: user.uid,
           email: user.email,
-          displayName: user.displayName,
+          displayName: userData.name || user.displayName,
         })
       );
+      await loadFavorites(user.uid);
     } catch (error) {
       console.error('Error logging in:', error);
     } finally {
@@ -84,7 +88,11 @@ const useAuthActions = () => {
     }
   };
 
-  return { registration, login, logOutUser };
+  return {
+    registration,
+    login,
+    logOutUser,
+  };
 };
 
 export default useAuthActions;

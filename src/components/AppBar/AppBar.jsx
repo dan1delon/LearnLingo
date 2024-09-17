@@ -6,10 +6,8 @@ import Logo from '../Logo/Logo';
 const AppBar = () => {
   return (
     <header className={css.wrapperMain}>
-      <div className={css.wrapperNav}>
-        <Logo />
-        <UserMenu />
-      </div>
+      <Logo />
+      <UserMenu />
       <AuthNav />
     </header>
   );

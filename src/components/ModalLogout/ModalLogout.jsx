@@ -1,15 +1,18 @@
 import clsx from 'clsx';
 import css from './ModalLogout.module.css';
-import useAuthActions from '../../firebaseHelpers/index.js';
+import useAuthActions from '../../firebaseHelpers/firebaseAuth.js';
 import { useModal } from '../../context/modalContext.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const ModalLogout = () => {
+  const navigate = useNavigate();
   const { logOutUser } = useAuthActions();
   const { closeModal } = useModal();
 
   const handleLogoutClick = e => {
     logOutUser();
     closeModal(e);
+    navigate('/');
   };
 
   return (

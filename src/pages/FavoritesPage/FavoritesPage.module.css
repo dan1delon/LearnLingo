@@ -4,3 +4,36 @@
   gap: 32px;
   padding: 96px 128px;
 }
+
+.messageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.message {
+  max-width: 500px;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 56px;
+  letter-spacing: -2%;
+}
+
+.link {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0%;
+  text-align: left;
+  padding: 16px 44px;
+  border-radius: 12px;
+  margin-top: 30px;
+  background: var(--dark-blue-color);
+  transition: all var(--transition-duration) var(--transition-timing-function);
+}
+
+.link:hover {
+  background: var(--dark-blue-color-hover);
+}

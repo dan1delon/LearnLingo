@@ -5,11 +5,13 @@ import clsx from 'clsx';
 import { useState } from 'react';
 import Icon from '../../shared/Icon/Icon';
 import css from './RegistrationForm.module.css';
-import useAuthActions from '../../firebaseHelpers/index.js';
+import useAuthActions from '../../firebaseHelpers/firebaseAuth.js';
+import { useModal } from '../../context/modalContext.jsx';
 
 const RegistrationForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { registration } = useAuthActions();
+  const { closeModal } = useModal();
 
   const FormSchema = Yup.object({
     name: Yup.string().required('Please enter your name'),
@@ -34,7 +36,8 @@ const RegistrationForm = () => {
 
   const onSubmit = (data, e) => {
     e.preventDefault();
-    registration(data, e);
+    registration(data);
+    closeModal(e);
     reset();
   };
 

@@ -1,34 +1,62 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import TeachersItem from '../TeachersItem/TeachersItem';
 import css from './TeachersList.module.css';
 import { selectTeachers } from '../../redux/teachers/selectors';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { selectFavorites } from '../../redux/favorites/selectors';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import { clearFavorites } from '../../redux/favorites/slice';
 
-const TeachersList = () => {
-  const [visibleAdsCount, setVisibleAdsCount] = useState(4);
+const TeachersList = ({ showFavorites = false }) => {
+  const [visibleTeachersCount, setVisibleTeachersCount] = useState(4);
   const data = useSelector(selectTeachers);
+  const favorites = useSelector(selectFavorites);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      dispatch(clearFavorites());
+    }
+  }, [isLoggedIn, dispatch]);
+
+  const teachersToShow = useMemo(() => {
+    if (showFavorites) {
+      if (!isLoggedIn) {
+        return [];
+      }
+
+      return data.filter(teacher => teacher.id in favorites);
+    }
+
+    return data;
+  }, [showFavorites, data, favorites, isLoggedIn]);
+
+  const visibleTeachers = useMemo(() => {
+    return teachersToShow.slice(0, visibleTeachersCount);
+  }, [teachersToShow, visibleTeachersCount]);
 
   const handleLoadMore = () => {
-    setVisibleAdsCount(prevCount => prevCount + 4);
+    setVisibleTeachersCount(prevCount => prevCount + 4);
   };
 
   return (
     <>
       <ul className={css.list}>
-        {data.length === 0 && (
+        {visibleTeachers.length === 0 && showFavorites === false && (
           <li className={css.listItemMessage}>
             <p className={css.message}>
-              Sorry, there are no results matching your search :(
+              Sorry, there are no teachers matching your search :(
             </p>
           </li>
         )}
-        {data.slice(0, visibleAdsCount).map(teacher => (
+        {visibleTeachers.map(teacher => (
           <li key={teacher.id} className={css.listItem}>
             <TeachersItem data={teacher} />
           </li>
         ))}
       </ul>
-      {data.length > 4 && visibleAdsCount < data.length && (
+      {visibleTeachersCount < teachersToShow.length && (
         <button
           type="button"
           className={css.loadMoreBtn}
