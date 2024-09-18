@@ -1,24 +1,16 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import TeachersItem from '../TeachersItem/TeachersItem';
 import css from './TeachersList.module.css';
 import { selectTeachers } from '../../redux/teachers/selectors';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { selectFavorites } from '../../redux/favorites/selectors';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
-import { clearFavorites } from '../../redux/favorites/slice';
 
 const TeachersList = ({ showFavorites = false }) => {
   const [visibleTeachersCount, setVisibleTeachersCount] = useState(4);
   const data = useSelector(selectTeachers);
   const favorites = useSelector(selectFavorites);
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      dispatch(clearFavorites());
-    }
-  }, [isLoggedIn, dispatch]);
 
   const teachersToShow = useMemo(() => {
     if (showFavorites) {

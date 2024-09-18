@@ -23,3 +23,18 @@
   line-height: 22px;
   text-align: left;
 }
+
+.textRegister {
+  line-height: 22px;
+  text-align: left;
+}
+
+.registerBtn {
+  margin-left: 10px;
+  background-color: transparent;
+  color: var(--dark-blue-color);
+  font-size: 16px;
+  line-height: 22px;
+  text-align: left;
+  text-decoration: underline;
+}

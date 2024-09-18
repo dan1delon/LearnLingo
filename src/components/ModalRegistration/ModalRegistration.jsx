@@ -1,7 +1,15 @@
+import { useModal } from '../../context';
+import ModalLogin from '../ModalLogin/ModalLogin';
 import RegistrationForm from '../RegistrationForm/RegistrationForm';
 import css from './ModalRegistration.module.css';
 
 const ModalRegistration = () => {
+  const { openModal } = useModal();
+
+  const handleBtnClick = () => {
+    openModal(<ModalLogin />);
+  };
+
   return (
     <div className={css.wrapper}>
       <div className={css.infoWrapper}>
@@ -13,6 +21,12 @@ const ModalRegistration = () => {
         </p>
       </div>
       <RegistrationForm />
+      <p className={css.textRegister}>
+        Already have an account?
+        <button className={css.registerBtn} onClick={handleBtnClick}>
+          Login now
+        </button>
+      </p>
     </div>
   );
 };
