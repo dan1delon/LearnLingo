@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
     location.pathname === '/teachers' || location.pathname === '/favorites';
 
   return (
-    <>
+    <div className={css.container}>
       <AppBar />
       <div
         className={
@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
       >
         <main className={css.content}>{children}</main>
       </div>
-    </>
+    </div>
   );
 };
 

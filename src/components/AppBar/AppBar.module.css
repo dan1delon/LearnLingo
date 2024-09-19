@@ -4,13 +4,25 @@
   justify-content: space-between;
   align-items: center;
   height: 48px;
-  width: 1184px;
-  margin: 20px auto;
+  margin: 20px 0;
   background: var(--primary-white-color);
+
+  @media screen and (min-width: 768px) {
+    justify-content: center;
+  }
 }
 
-.wrapperNav {
-  display: flex;
-  align-items: center;
-  z-index: 1;
+.wrapper {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 48px;
+    max-width: 1184px;
+    margin: 20px 0;
+    background: var(--primary-white-color);
+  }
 }

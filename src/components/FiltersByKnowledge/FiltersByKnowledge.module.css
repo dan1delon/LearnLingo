@@ -11,7 +11,7 @@
 }
 
 .btn {
-  width: 198px;
+  min-width: 198px;
   height: 48px;
   padding: 14px 18px;
   display: flex;
