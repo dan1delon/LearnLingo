@@ -7,15 +7,20 @@ import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Loader from '../../components/Loader/Loader';
 import { useEffect } from 'react';
 import { fetchTeachers } from '../../redux/teachers/operations';
+import { resetFilters } from '../../redux/filter/slice';
+import { useLocation } from 'react-router-dom';
 
 const TeachersPage = () => {
   const isLoading = useSelector(selectIsLoading);
   const isError = useSelector(selectError);
+
+  const location = useLocation();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchTeachers());
-  }, [dispatch]);
+    dispatch(resetFilters());
+  }, [location.pathname, dispatch]);
 
   return (
     <>

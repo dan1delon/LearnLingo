@@ -4,6 +4,14 @@
   gap: 32px;
 }
 
+.listItemMessage {
+  margin-top: 40px;
+}
+
+.message {
+  text-align: center;
+}
+
 .loadMoreBtn {
   width: 188px;
   height: 60px;

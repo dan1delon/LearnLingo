@@ -3,3 +3,26 @@
   align-items: center;
   gap: 20px;
 }
+
+.btn {
+  height: 48px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 14px;
+  background: var(--light-blue-color);
+  border: none;
+  cursor: pointer;
+  margin-top: auto;
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: left;
+  transition: all var(--transition-duration) var(--transition-timing-function);
+}
+
+.btn:hover {
+  background: var(--dark-blue-color);
+}

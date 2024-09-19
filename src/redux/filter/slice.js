@@ -1,27 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  location: '',
-  equipment: [],
-  type: '',
-  transmission: '',
+  language: 'All',
+  knowledge: 'All',
+  price: null,
 };
 
 const filtersSlice = createSlice({
   name: 'filters',
   initialState,
   reducers: {
-    changeLocationFilter(state, action) {
-      state.location = action.payload;
+    changeLanguageFilter(state, action) {
+      state.language = action.payload;
     },
-    changeEquipmentFilter(state, action) {
-      state.equipment = action.payload;
+    changeKnowledgeFilter(state, action) {
+      state.knowledge = action.payload;
     },
-    changeTypeFilter(state, action) {
-      state.type = action.payload;
-    },
-    changeTransmissionFilter(state, action) {
-      state.transmission = action.payload;
+    changePriceFilter(state, action) {
+      state.price = action.payload;
     },
     resetFilters(state) {
       Object.assign(state, initialState);
@@ -30,10 +26,9 @@ const filtersSlice = createSlice({
 });
 
 export const {
-  changeLocationFilter,
-  changeEquipmentFilter,
-  changeTypeFilter,
-  changeTransmissionFilter,
+  changeLanguageFilter,
+  changeKnowledgeFilter,
+  changePriceFilter,
   resetFilters,
 } = filtersSlice.actions;
 

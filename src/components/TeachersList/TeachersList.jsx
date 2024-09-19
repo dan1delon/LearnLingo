@@ -1,32 +1,28 @@
 import { useSelector } from 'react-redux';
 import TeachersItem from '../TeachersItem/TeachersItem';
 import css from './TeachersList.module.css';
-import { selectTeachers } from '../../redux/teachers/selectors';
-import { useMemo, useState } from 'react';
-import { selectFavorites } from '../../redux/favorites/selectors';
-import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import { useEffect, useMemo, useState } from 'react';
+import {
+  selectFavoriteTeachers,
+  selectFilteredTeachers,
+  selectFilters,
+} from '../../redux/filter/selectors';
 
 const TeachersList = ({ showFavorites = false }) => {
   const [visibleTeachersCount, setVisibleTeachersCount] = useState(4);
-  const data = useSelector(selectTeachers);
-  const favorites = useSelector(selectFavorites);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const filters = useSelector(selectFilters);
 
-  const teachersToShow = useMemo(() => {
-    if (showFavorites) {
-      if (!isLoggedIn) {
-        return [];
-      }
+  useEffect(() => {
+    setVisibleTeachersCount(4);
+  }, [filters, showFavorites]);
 
-      return data.filter(teacher => teacher.id in favorites);
-    }
-
-    return data;
-  }, [showFavorites, data, favorites, isLoggedIn]);
+  const filteredTeachers = useSelector(
+    showFavorites ? selectFavoriteTeachers : selectFilteredTeachers
+  );
 
   const visibleTeachers = useMemo(() => {
-    return teachersToShow.slice(0, visibleTeachersCount);
-  }, [teachersToShow, visibleTeachersCount]);
+    return filteredTeachers.slice(0, visibleTeachersCount);
+  }, [filteredTeachers, visibleTeachersCount]);
 
   const handleLoadMore = () => {
     setVisibleTeachersCount(prevCount => prevCount + 4);
@@ -48,7 +44,7 @@ const TeachersList = ({ showFavorites = false }) => {
           </li>
         ))}
       </ul>
-      {visibleTeachersCount < teachersToShow.length && (
+      {visibleTeachersCount < filteredTeachers.length && (
         <button
           type="button"
           className={css.loadMoreBtn}

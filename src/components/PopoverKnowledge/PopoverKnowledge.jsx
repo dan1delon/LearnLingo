@@ -1,6 +1,8 @@
 import css from './PopoverKnowledge.module.css';
 import { useEffect, useRef } from 'react';
 import clsx from 'clsx';
+import { changeKnowledgeFilter } from '../../redux/filter/slice';
+import { useDispatch } from 'react-redux';
 
 const KNOWLEDGE = [
   'A1 Beginner',
@@ -12,34 +14,24 @@ const KNOWLEDGE = [
 ];
 
 const PopoverKnowledge = ({
-  closePopover,
-  restrictionClick,
-  isVisible,
-  setChosenKnowledge,
   chosenKnowledge,
+  isVisible,
+  popoverRef,
+  closePopover,
+  handleOutsideClick,
 }) => {
-  const popoverRef = useRef(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const handleOutsideClick = e => {
-      if (
-        !restrictionClick(e) &&
-        popoverRef.current &&
-        !popoverRef.current.contains(e.target)
-      ) {
-        closePopover();
-      }
-    };
-
     document.addEventListener('mousedown', handleOutsideClick);
     return () => {
       document.removeEventListener('mousedown', handleOutsideClick);
     };
-  }, [closePopover, restrictionClick]);
+  }, [handleOutsideClick]);
 
   const handleChange = knowledge => {
     closePopover();
-    setChosenKnowledge(knowledge);
+    dispatch(changeKnowledgeFilter(knowledge));
   };
 
   return (

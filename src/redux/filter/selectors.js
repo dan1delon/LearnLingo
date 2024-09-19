@@ -1,44 +1,50 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { selectAdverts } from '../ads/selectors';
+import { selectTeachers } from '../teachers/selectors';
+import { selectFavorites } from '../favorites/selectors';
+import { selectIsLoggedIn } from '../auth/selectors';
 
 export const selectFilters = state => state.filters;
-export const selectLocation = state => state.filters.location;
-export const selectEquipment = state => state.filters.equipment;
-export const selectType = state => state.filters.type;
-export const selectTransmission = state => state.filters.transmission;
+export const selectLanguage = state => state.filters.language;
+export const selectKnowledge = state => state.filters.knowledge;
+export const selectPrice = state => state.filters.price;
 
-const filterByLocation = (ad, location) => {
-  if (!location) return true;
-  const adLocation = ad.location ? ad.location.toLowerCase() : '';
-  return adLocation.includes(location.toLowerCase());
-};
+export const selectFilteredTeachers = createSelector(
+  [selectTeachers, selectLanguage, selectKnowledge, selectPrice],
+  (teachers, languageFilter, knowledgeFilter, priceFilter) => {
+    let filteredTeachers = teachers;
 
-const filterByEquipment = (ad, equipment) => {
-  if (!equipment.length) return true;
-  const adEquipment = Object.keys(ad.details || {}).filter(
-    key => ad.details[key] > 0
-  );
-  return equipment.every(equip => adEquipment.includes(equip));
-};
+    if (languageFilter && languageFilter !== 'All') {
+      filteredTeachers = filteredTeachers.filter(teacher =>
+        teacher.languages.includes(languageFilter)
+      );
+    }
 
-const filterByType = (ad, type) => !type || ad.form === type;
+    if (knowledgeFilter && knowledgeFilter !== 'All') {
+      filteredTeachers = filteredTeachers.filter(teacher =>
+        teacher.levels.includes(knowledgeFilter)
+      );
+    }
 
-const filterByTransmission = (ad, transmission) => {
-  if (!transmission) return true;
-  return ad.transmission === transmission;
-};
+    if (priceFilter) {
+      filteredTeachers = filteredTeachers.filter(teacher => {
+        const roundedPrice = Math.floor(teacher.price_per_hour / 10) * 10;
+        return roundedPrice === priceFilter;
+      });
+    }
 
-export const selectFilteredAdverts = createSelector(
-  [selectAdverts, selectFilters],
-  (adverts, filters) => {
-    const { location, equipment, type, transmission } = filters;
+    return filteredTeachers;
+  }
+);
 
-    return adverts.filter(
-      ad =>
-        filterByLocation(ad, location) &&
-        filterByEquipment(ad, equipment) &&
-        filterByType(ad, type) &&
-        filterByTransmission(ad, transmission)
-    );
+export const selectFavoriteTeachers = createSelector(
+  [selectFilteredTeachers, selectFavorites, selectIsLoggedIn],
+  (filteredTeachers, favorites, isLoggedIn) => {
+    if (!isLoggedIn) {
+      return [];
+    }
+
+    const favoriteIds = Object.keys(favorites);
+
+    return filteredTeachers.filter(teacher => favoriteIds.includes(teacher.id));
   }
 );

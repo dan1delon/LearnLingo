@@ -45,4 +45,9 @@
 .icon {
   width: 10px;
   height: 5px;
+  transition: all var(--transition-duration) var(--transition-timing-function);
+}
+
+.iconRotate {
+  transform: rotate(180deg);
 }

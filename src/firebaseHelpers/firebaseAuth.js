@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { useModal } from '../context';
 import { useDispatch } from 'react-redux';
 import { logout, setUser } from '../redux/auth/slice';
+import { loadFavorites } from './firebaseFavorites';
 
 const useAuthActions = () => {
   const navigate = useNavigate();
@@ -68,7 +69,7 @@ const useAuthActions = () => {
           displayName: userData.name || user.displayName,
         })
       );
-      await loadFavorites(user.uid);
+      await loadFavorites(user.uid, dispatch);
     } catch (error) {
       console.error('Error logging in:', error);
     } finally {

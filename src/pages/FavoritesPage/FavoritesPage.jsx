@@ -1,11 +1,18 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import TeachersList from '../../components/TeachersList/TeachersList';
 import { selectFavorites } from '../../redux/favorites/selectors';
 import css from './FavoritesPage.module.css';
 import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
+import { resetFilters } from '../../redux/filter/slice';
 
 const FavoritesPage = () => {
   const favorites = useSelector(selectFavorites);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(resetFilters());
+  }, [dispatch]);
 
   return (
     <div className={css.container}>
