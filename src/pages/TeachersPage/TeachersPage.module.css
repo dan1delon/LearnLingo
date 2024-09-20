@@ -1,7 +1,17 @@
 .container {
-  width: 1184px;
+  box-sizing: border-box;
+  max-width: 1216px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 32px;
-  padding: 96px 128px;
+  padding: 32px 16px;
+
+  @media screen and (min-width: 768px) {
+    padding: 64px 16px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding: 96px 16px;
+  }
 }

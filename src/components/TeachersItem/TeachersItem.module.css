@@ -1,54 +1,87 @@
 .mainContainer {
+  box-sizing: border-box;
+  max-width: 1184px;
+  width: 100%;
   display: flex;
-  gap: 48px;
+  flex-direction: column;
+  gap: 12px;
   border-radius: 24px;
   background-color: var(--primary-white-color);
-  padding: 24px;
+  padding: 16px;
+  position: relative;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    padding: 24px;
+    gap: 48px;
+  }
 }
 
 .avatarWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 120px;
-  height: 120px;
+  width: 90px;
+  height: 90px;
+  padding: 8px;
   position: relative;
-  border: 50%;
+  border-radius: 50%;
   box-sizing: border-box;
   border: 3px solid var(--light-blue-color);
-  border-radius: 100px;
+
+  @media screen and (min-width: 768px) {
+    padding: 12px;
+    width: 120px;
+    height: 120px;
+  }
 }
 
 .avatar {
-  width: 96px;
-  height: 96px;
+  width: 68px;
+  height: 68px;
   border-radius: 50%;
+
+  @media screen and (min-width: 768px) {
+    width: 96px;
+    height: 96px;
+  }
 }
 
 .icon {
   position: absolute;
-  top: 12px;
-  right: 22px;
+  top: 8px;
+  right: 16px;
   width: 12px;
   height: 12px;
+
+  @media screen and (min-width: 768px) {
+    top: 12px;
+    right: 22px;
+  }
 }
 
 .infoContainer {
-  width: 968px;
+  max-width: 968px;
+  width: 100%;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   gap: 32px;
 }
 
 .bookTrialBtn {
-  width: 242px;
-  height: 60px;
-  padding: 16px 48px;
+  box-sizing: border-box;
+  padding: 16px 24px;
   border-radius: 12px;
   font-size: 18px;
   font-weight: 700;
   background-color: var(--dark-blue-color);
   transition: all var(--transition-duration) var(--transition-timing-function);
+
+  @media screen and (min-width: 768px) {
+    width: 242px;
+    padding: 16px 48px;
+  }
 }
 
 .bookTrialBtn:hover {
