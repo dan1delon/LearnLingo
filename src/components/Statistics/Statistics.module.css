@@ -28,6 +28,11 @@
     gap: 40px;
     flex-direction: row;
   }
+
+  @media screen and (min-width: 1440px) {
+    gap: 100px;
+    flex-wrap: nowrap;
+  }
 }
 
 .list .item:nth-child(2) .text {

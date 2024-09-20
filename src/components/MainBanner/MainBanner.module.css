@@ -75,10 +75,11 @@
   line-height: 28px;
   letter-spacing: 0%;
   text-align: left;
-  padding: 16px 80px;
+  padding: 16px 68px;
   border-radius: 12px;
   background: var(--dark-blue-color);
   transition: all var(--transition-duration) var(--transition-timing-function);
+  box-sizing: border-box;
 
   @media screen and (min-width: 768px) {
     padding: 16px 88px;
