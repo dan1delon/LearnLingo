@@ -60,19 +60,26 @@ const MobileMenu = () => {
                 Teachers
               </NavLink>
             </li>
-            <li className={css.item} onClick={toggleMenu}>
-              <NavLink to="/favorites" className={css.link}>
-                Favorites
-              </NavLink>
-            </li>
+            {isLoggedIn && (
+              <li className={css.item} onClick={toggleMenu}>
+                <NavLink to="/favorites" className={css.link}>
+                  Favorites
+                </NavLink>
+              </li>
+            )}
           </ul>
           {!isLoggedIn && (
             <ul className={css.authList}>
               <li className={css.authItem} onClick={openLogin}>
-                <span className={css.link}>Log in</span>
+                <button type="button" className={css.loginBtn}>
+                  Log in
+                  <Icon iconId="icon-log-in" className={css.icon} />
+                </button>
               </li>
               <li className={css.authItem} onClick={openRegistration}>
-                <span className={css.link}>Register</span>
+                <button type="button" className={css.loginBtn}>
+                  Register
+                </button>
               </li>
             </ul>
           )}
@@ -86,8 +93,8 @@ const MobileMenu = () => {
                 className={css.loginBtn}
                 onClick={openLogout}
               >
-                <Icon iconId="icon-log-in" className={css.icon} />
                 Log out
+                <Icon iconId="icon-log-in" className={css.icon} />
               </button>
             </div>
           )}

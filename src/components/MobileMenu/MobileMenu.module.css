@@ -74,10 +74,51 @@
 .authList {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 16px;
 }
 
 .authItem {
+}
+
+.loginBtn {
+  font-family: var(--primary-font-family);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: transparent;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 56px;
+  letter-spacing: 0%;
+  text-align: left;
+  transition: all 0.3s ease-in-out;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  stroke: var(--light-blue-color);
+}
+
+.userWrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 16px;
+}
+
+.userName {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0%;
+  text-align: left;
+}
+
+.name {
+  color: var(--dark-blue-color);
 }
 
 @media screen and (min-width: 768px) {
