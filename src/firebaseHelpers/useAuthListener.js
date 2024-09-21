@@ -1,29 +1,39 @@
 import { onAuthStateChanged } from 'firebase/auth';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser, logout } from '../redux/auth/slice';
 import { auth } from '../firebase';
 
 const useAuthListener = () => {
   const dispatch = useDispatch();
+  const isMounted = useRef(true);
 
   useEffect(() => {
+    isMounted.current = true;
+
     const unsubscribe = onAuthStateChanged(auth, user => {
-      if (user) {
-        dispatch(
-          setUser({
-            uid: user.uid,
-            email: user.email,
-            displayName: user.displayName,
-          })
-        );
-      } else {
-        dispatch(logout());
+      if (isMounted.current) {
+        if (user) {
+          dispatch(
+            setUser({
+              uid: user.uid,
+              email: user.email,
+              displayName: user.displayName,
+            })
+          );
+        } else {
+          dispatch(logout());
+        }
       }
     });
 
-    return () => unsubscribe();
+    return () => {
+      isMounted.current = false;
+      unsubscribe();
+    };
   }, [dispatch]);
+
+  return null;
 };
 
 export default useAuthListener;

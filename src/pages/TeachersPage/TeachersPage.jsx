@@ -22,16 +22,20 @@ const TeachersPage = () => {
     dispatch(resetFilters());
   }, [location.pathname, dispatch]);
 
+  if (isError) {
+    return <ErrorMessage />;
+  }
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
     <>
-      {isError && <ErrorMessage />}
-      {isLoading && <Loader />}
-      {!isLoading && !isError && (
-        <div className={css.container}>
-          <Filters />
-          <TeachersList />
-        </div>
-      )}
+      <div className={css.container}>
+        <Filters />
+        <TeachersList />
+      </div>
     </>
   );
 };

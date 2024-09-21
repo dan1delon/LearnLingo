@@ -1,14 +1,14 @@
-import { Suspense } from 'react';
-import './App.css';
+import { lazy, Suspense } from 'react';
 import Loader from './components/Loader/Loader';
-import { Route, Routes, useLocation } from 'react-router-dom';
-import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
-import HomePage from './pages/HomePage/HomePage';
-import FavoritesPage from './pages/FavoritesPage/FavoritesPage';
+import { Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
-import TeachersPage from './pages/TeachersPage/TeachersPage';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import useAuthListener from './firebaseHelpers/useAuthListener';
+
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const TeachersPage = lazy(() => import('./pages/TeachersPage/TeachersPage'));
+const FavoritesPage = lazy(() => import('./pages/FavoritesPage/FavoritesPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
 function App() {
   useAuthListener();
