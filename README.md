@@ -1,4 +1,4 @@
-# KЦ Project (Cultural Center)
+# LearnLingo Project 
 
 This project is a web application for searching and managing information about teachers and saving their profiles in users accounts. It is a pet project aimed at demonstrating skills in React, Redux, Firebase, responsive design, and other modern web technologies.
 
