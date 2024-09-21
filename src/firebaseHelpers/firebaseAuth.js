@@ -11,6 +11,7 @@ import { useModal } from '../context';
 import { useDispatch } from 'react-redux';
 import { logout, setUser } from '../redux/auth/slice';
 import { loadFavorites } from './firebaseFavorites';
+import toast from 'react-hot-toast';
 
 const useAuthActions = () => {
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ const useAuthActions = () => {
         })
       );
     } catch (error) {
-      console.error('Error registering user:', error);
+      toast.error('Error registering user:', error);
     } finally {
       navigate('/teachers');
     }
@@ -71,7 +72,7 @@ const useAuthActions = () => {
       );
       await loadFavorites(user.uid, dispatch);
     } catch (error) {
-      console.error('Error logging in:', error);
+      toast.error('Error logging in:', error);
     } finally {
       closeModal(e);
       navigate('/teachers');
@@ -83,7 +84,7 @@ const useAuthActions = () => {
       await signOut(auth);
       dispatch(logout());
     } catch (error) {
-      console.error('Error logging out:', error);
+      toast.error('Error logging out:', error);
     } finally {
       navigate('/');
     }

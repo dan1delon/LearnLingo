@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import css from './BookingForm.module.css';
 import { useForm } from 'react-hook-form';
 import clsx from 'clsx';
@@ -9,6 +10,20 @@ import { useModal } from '../../context';
 const BookingForm = () => {
   const [selectedReason, setSelectedReason] = useState('');
   const { closeModal } = useModal();
+
+  const notify = () =>
+    toast.success('Your booking was successful! We will contact you soon!', {
+      style: {
+        border: '1px solid #38cd3e',
+        color: '#121417',
+        textAlign: 'center',
+        position: 'top-right',
+      },
+      iconTheme: {
+        primary: '#38cd3e',
+        secondary: '#FFFAEE',
+      },
+    });
 
   const FormSchema = Yup.object({
     reason: Yup.string().required('Please select a reason'),
@@ -38,6 +53,7 @@ const BookingForm = () => {
     setSelectedReason('');
     reset();
     closeModal(e);
+    notify();
   };
 
   const handleRadioChange = event => {

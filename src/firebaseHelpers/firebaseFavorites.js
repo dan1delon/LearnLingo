@@ -1,6 +1,7 @@
 import { ref, remove, set, get } from 'firebase/database';
 import { db } from '../firebase';
 import { addFavorite } from '../redux/favorites/slice';
+import toast from 'react-hot-toast';
 
 export const addFavoriteToDatabase = async (userId, teacherId) => {
   await set(ref(db, `users/${userId}/favorites/${teacherId}`), true);
@@ -19,8 +20,6 @@ export const loadFavorites = async (userId, dispatch) => {
     for (const [key, value] of Object.entries(favoritesData)) {
       dispatch(addFavorite({ id: key, ...value, userId }));
     }
-  } else {
-    console.log('No favorites found.');
   }
 };
 
@@ -29,7 +28,7 @@ export const addFavoriteAsync = payload => async dispatch => {
     await addFavoriteToDatabase(payload.userId, payload.id);
     dispatch(addFavorite(payload));
   } catch (error) {
-    console.error('Error adding favorite:', error);
+    toast.error('Error adding favorite:', error);
   }
 };
 
@@ -38,7 +37,7 @@ export const removeFavoriteAsync = payload => async dispatch => {
     await removeFavoriteFromDatabase(payload.userId, payload.id);
     dispatch(removeFavorite(payload));
   } catch (error) {
-    console.error('Error removing favorite:', error);
+    toast.error('Error removing favorite:', error);
   }
 };
 
