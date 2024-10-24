@@ -13,14 +13,15 @@
 }
 
 .loadMoreBtn {
-  width: 188px;
+  box-sizing: border-box;
+  min-width: 188px;
   height: 60px;
   margin: 32px auto 0;
   padding: 16px 48px;
   font-size: 18px;
   font-weight: 700;
   line-height: 28px;
-  text-align: left;
+  text-align: center;
   border-radius: 12px;
   background-color: var(--dark-blue-color);
   transition: all var(--transition-duration) var(--transition-timing-function);
